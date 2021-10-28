@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 unsigned int * randomf(){
-	int f = open("/dev/random", O_RDONLY, 0);
+    int f = open("/dev/random", O_RDONLY, 0);
     unsigned int * arr = malloc(40);
     int k = read(f,arr,40);
 	return arr;
@@ -18,7 +18,7 @@ int main(){
 		printf("Random Number %d: %u\n",i+1,arr[i]);
 	}
     printf("Writing numbers to file text.txt...\n");
-    int fd = open("text.txt", O_WRONLY,0);
+    int fd = open("text.txt", O_WRONLY|O_CREAT,0666);
     write(fd,arr,40);
     printf("Reading numbers from file text.txt...\n");
     int fd2 = open("text.txt", O_RDONLY,0);
